@@ -11,9 +11,9 @@ const Messages = () => {
     const { selectedUser, authUser } = useSelector(store => store.user);
 
     // Add console log to inspect messages, selectedUser, and authUser
-    console.log('Messages:', messages);
-    console.log('Selected User:', selectedUser);
-    console.log('Auth User:', authUser);
+    // console.log('Messages:', messages);
+    // console.log('Selected User:', selectedUser);
+    // console.log('Auth User:', authUser);
 
     // Ensure messages is an array and filter out invalid messages
     const safeMessages = Array.isArray(messages) 
