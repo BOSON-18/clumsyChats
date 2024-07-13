@@ -12,6 +12,7 @@ import {
     REGISTER,
   } from 'redux-persist';
   import storage from 'redux-persist/lib/storage'
+import transformExcludeSocket from "./transformExculdeSocket.js";
 
   const persistConfig = {
     key: 'root',
@@ -22,7 +23,8 @@ import {
   const rootReducer = combineReducers({
     user:userReducer,
     message:messageReducer,
-    socket:socketReducer
+    socket:socketReducer,
+    transforms: [transformExcludeSocket]
  })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -31,10 +33,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 const store = configureStore({
     reducer:persistedReducer,
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+          ignoredPaths: ['socket.socket'], // Ignore non-serializable socket state
+        },
+      }),
 });
 export default store;
