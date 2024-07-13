@@ -13,7 +13,7 @@ const Messages = () => {
     console.log('Messages:', messages);
 
     // Ensure messages is an array
-    if(messages?._id===undefined || messages?._id===null){
+    if( messages?._id===null){
 return ;
     }
     messages?.filter(message => message?._id !== undefined && message?._id !== null);
