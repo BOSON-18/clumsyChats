@@ -16,7 +16,7 @@ const Messages = () => {
     // if(messages?._id===undefined || messages?._id===null){
 
     // }
-    messages.filter(message => message._id !== undefined && message._id !== null);
+    messages?.filter(message => message?._id !== undefined && message?._id !== null);
     // if(messages.length<1)
     const safeMessages = Array.isArray(messages) ? messages : [];
 
@@ -25,7 +25,7 @@ const Messages = () => {
             {
                 safeMessages?.map((message) => {
                     return (
-                        <Message key={message._id} message={message} />
+                        <Message key={message?._id} message={message} />
                     )
                 })
             }
