@@ -20,6 +20,8 @@ const Messages = () => {
     // if(messages.length<1)
     const safeMessages = Array.isArray(messages) ? messages : [];
 
+    if(safeMessages.length<1) return;
+
     return (
         <div className='px-4 flex-1 overflow-auto'>
             {
