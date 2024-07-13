@@ -1,7 +1,7 @@
-import React from 'react'
-import Message from './Message'
+import React from 'react';
+import Message from './Message';
 import useGetMessages from '../hooks/useGetMessages';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import useGetRealTimeMessage from '../hooks/useGetRealTimeMessage';
 
 const Messages = () => {
@@ -12,27 +12,23 @@ const Messages = () => {
     // Add console log to inspect messages
     console.log('Messages:', messages);
 
-    // Ensure messages is an array
-    if( messages?._id===null){
-return ;
-    }
-    messages?.filter(message => message?._id !== undefined && message?._id !== null);
-    // if(messages.length<1)
-    const safeMessages = Array.isArray(messages) ? messages : [];
+    // Ensure messages is an array and filter out invalid messages
+    const safeMessages = Array.isArray(messages) ? messages.filter(message => message && message._id) : [];
 
-    if(safeMessages.length<1) return;
+    // Return null or a loading indicator if safeMessages is empty
+    if (safeMessages.length < 1) return null;
 
     return (
         <div className='px-4 flex-1 overflow-auto'>
             {
-                safeMessages?.map((message) => {
+                safeMessages.map((message) => {
                     return (
-                        <Message key={message?._id} message={message} />
-                    )
+                        <Message key={message._id} message={message} />
+                    );
                 })
             }
         </div>
-    )
-}
+    );
+};
 
-export default Messages
+export default Messages;
