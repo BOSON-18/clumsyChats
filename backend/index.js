@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin:'https://clumsy-chats.vercel.app',
+    origin:['https://clumsy-chats.vercel.app','http://localhost:3000'],
     credentials:true
 })); 
 
