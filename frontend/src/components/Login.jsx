@@ -34,8 +34,9 @@ const Login = () => {
         withCredentials: true
       });
       navigate("/");
-      // console.log(res);
+      // console.log(res.data.token);
       dispatch(setAuthUser(res.data));
+      localStorage.setItem("token",res?.data?.token)
     } catch (error) {
       toast.error(error.response.data.message);
       // console.log(error);
